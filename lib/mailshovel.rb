@@ -44,7 +44,11 @@ class Mailshovel
 
   #Return an array of full filenames, in the proper order
   def messages
-    Dir.entries(@msgdir).collect{|e| File.join(@msgdir,e) if e[0..0] != "."}.compact.sort
+    if File.exists?(@msgdir)
+      Dir.entries(@msgdir).collect{|e| File.join(@msgdir,e) if e[0..0] != "."}.compact.sort
+    else
+      []
+    end
   end
 
   # Talk pidgin-POP3 to the client
@@ -101,6 +105,6 @@ class Mailshovel
   end
   
   def delete_pending_mail
-    @deletion_queue.each { |message| FileUtils.rm(message) }
+    @deletion_queue.each { |message| FileUtils.rm(message) if File.exists?(message) }
   end
 end
