@@ -9,9 +9,9 @@ require 'mailtrap'
 require 'mailshovel' 
 
 opts = Trollop::options do
-  opt :smtp_host, "The host SMTP clients will connect to", :default => 'localhost'
+  opt :smtp_host, "The host SMTP clients will connect to", :default => '127.0.0.1'
   opt :smtp_port, "The port SMTP clients will connect to", :default => 2525
-  opt :pop3_host, "The host POP3 clients will connect to", :default => 'localhost'
+  opt :pop3_host, "The host POP3 clients will connect to", :default => '127.0.0.1'
   opt :pop3_port, "The port POP3 clients will connect to", :default => 1100
   opt :once, "Whether to terminate after serving the first client", :default => false
   opt :file, "File where messages get written as a single file", :default => "/var/tmp/mailtrap.log"
